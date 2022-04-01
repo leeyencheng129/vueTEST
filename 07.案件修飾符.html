@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <input type="text" @keyup.esc="clearInput" @keyup.enter="ajax">
+    </div>
+
+
+    <script src="lib/vue.js"></script>
+    <script>
+
+        const vm = new Vue({
+            //el屬性是固定的語法
+            el: '#app',
+
+            //定義事件處理函數
+            methods: {
+
+                clearInput(e) {
+                    console.log('esc');
+                    e.target.value = ''
+                },
+                ajax() {
+                    console.log('alax');
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

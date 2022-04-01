@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>用戶的名字:{{username}}</p>
+        <input type="text" v-model="username">
+        <hr>
+        <select v-model="city">
+            <option value="">請選擇</option>
+            <option value="1">台北</option>
+            <option value="2">台中</option>
+            <option value="3">高雄</option>
+        </select>
+    </div>
+
+
+    <script src="lib/vue.js"></script>
+    <script>
+
+        const vm = new Vue({
+            //el屬性是固定的語法
+            el: '#app',
+            data: {
+                username: '螺絲嬤嬤',
+                city: ''
+
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

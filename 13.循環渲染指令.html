@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="lib/css/style.css">
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <h6>添加品牌</h6>
+            <div class="box">
+                <input type="text" placeholder="請輸入品牌名稱" v-model.trim="brand">
+                <button>添加</button>
+            </div>
+        </div>
+        <section>
+            <table>
+                <thead>
+                    <th>#</th>
+                    <th>品牌名稱</th>
+                    <th>狀態</th>
+                    <th>創建時間</th>
+                    <th>操作</th>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in list" :key="item.id">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td><label class="switch">
+                                <input type="checkbox" :id="'cb'+item.id" v-model="item.status">
+                                <span class="slider round"></span>
+                            </label>
+                            <label v-if="item.status" :for="'cb'+item.id">已啟用</label>
+                            <label v-else :for="'cb'+item.id">已禁用</label>
+                        </td>
+                        <td>{{ item.time }}</td>
+                        <td @click="remove(item.id)"><a href="javascript:;">刪除</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+
+    <script src="lib/vue.js"></script>
+    <script>
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                brand: '',
+                list: [
+                    { id: '1', name: "寶馬", status: true, time: new Date() },
+                    { id: '2', name: "保時捷", status: false, time: new Date() }
+                ]
+            },
+            methods: {
+                remove(id) {
+                    this.list = this.list.filter(item => item.id !== id)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

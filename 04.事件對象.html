@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>count的值 : {{count}}</p>
+        <button v-on:click="add(1)">+1</button>
+        <button @click="add(1)">+1</button>
+        <button v-on:click="sub">-1</button>
+    </div>
+
+
+    <script src="lib/vue.js"></script>
+    <script>
+
+        const vm = new Vue({
+            //el屬性是固定的語法
+            el: '#app',
+
+            //渲染到頁面上的數據
+            data: {
+                count: 0,
+            },
+
+            //定義事件處理函數
+            methods: {
+                add(n) {
+                    this.count += n
+                },
+                sub: function () {
+                    this.count -= 1
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

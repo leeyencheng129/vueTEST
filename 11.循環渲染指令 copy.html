@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table td,
+        table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:hover {
+            background-color: #ddd;
+        }
+
+        table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <table>
+            <thead>
+                <th>索引</th>
+                <th>ID</th>
+                <th>姓名</th>
+            </thead>
+            <tbody>
+                <!-- 官方建議，只要用到v-for指令，一定要綁定一個:key屬性 -->
+                <!-- 官方對key的質類型有要求，只能自符串或者數字類型 -->
+                <tr v-for="(item, index) in list" :key="item.id" :title="item.name + index">
+                    <td>{{index}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="lib/vue.js"></script>
+    <script>
+
+        const vm = new Vue({
+            //el屬性是固定的語法
+            el: '#app',
+            data: {
+                username: '螺絲嬤嬤',
+                list: [
+                    { id: 1, name: '王心凌' },
+                    { id: 2, name: '楊沉玲' },
+                    { id: 3, name: '蔡依玲' },
+                    { id: 4, name: '蔡依玲' },
+                ],
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
