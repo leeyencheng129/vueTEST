@@ -14,10 +14,10 @@
     <div id="app">
         <div class="header">
             <h6>添加品牌</h6>
-            <div class="box">
+            <form class="box" @submit.prevent="add">
                 <input type="text" placeholder="請輸入品牌名稱" v-model.trim="brand">
                 <button>添加</button>
-            </div>
+            </form>
         </div>
         <section>
             <table>
@@ -39,7 +39,7 @@
                             <label v-if="item.status" :for="'cb'+item.id">已啟用</label>
                             <label v-else :for="'cb'+item.id">已禁用</label>
                         </td>
-                        <td>{{ item.time }}</td>
+                        <td>{{ item.time | dateFormat}}</td>
                         <td @click="remove(item.id)"><a href="javascript:;">刪除</a></td>
                     </tr>
                 </tbody>
@@ -47,14 +47,19 @@
         </section>
     </div>
 
-
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="lib/vue.js"></script>
     <script>
+        Vue.filter('dateFormat', function (time) {
+            const timer = dayjs(time).format('YYYY-MM-DD HH:mm:ss')
+            return timer;
+        })
 
         const vm = new Vue({
             el: '#app',
             data: {
                 brand: '',
+                nextId: 4,
                 list: [
                     { id: '1', name: "寶馬", status: true, time: new Date() },
                     { id: '2', name: "保時捷", status: false, time: new Date() }
@@ -63,6 +68,18 @@
             methods: {
                 remove(id) {
                     this.list = this.list.filter(item => item.id !== id)
+                },
+                add() {
+                    if (this.brand === '') return alert('請填寫值')
+                    const obj = {
+                        id: this.nextId,
+                        name: this.brand,
+                        status: true,
+                        time: new Date(),
+                    };
+                    this.list.push(obj);
+                    this.brand = '';
+                    this.nextId++;
                 }
             }
         })
